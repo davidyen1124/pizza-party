@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Screen Pizza</title>
+    <title>Full Screen Pizza with WebRTC</title>
     <style>
         body, html {
             margin: 0;
@@ -15,10 +15,29 @@
         canvas {
             display: block;
         }
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <canvas id="pizzaCanvas"></canvas>
+    <div id="controls">
+        <button onclick="createOffer()">Create Offer</button>
+        <br><br>
+        <textarea id="answerBox" placeholder="Paste answer here"></textarea>
+        <br>
+        <button onclick="handleAnswer(document.getElementById('answerBox').value)">Set Answer</button>
+        <br><br>
+        <textarea id="candidateBox" placeholder="Paste ICE candidate here"></textarea>
+        <br>
+        <button onclick="handleCandidate(document.getElementById('candidateBox').value)">Add ICE Candidate</button>
+    </div>
     <script src="webrtc.js"></script>
     <script src="pizza.js"></script>
     <script>
