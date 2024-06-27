@@ -11,18 +11,22 @@ function resizeCanvas() {
 }
 
 function dropPineapple(x, y, isLocal = true) {
-  pineappleSlices.push({ x, y })
+  const xPercent = x / canvas.width
+  const yPercent = y / canvas.height
+  pineappleSlices.push({ xPercent, yPercent })
   drawPineappleSlices()
   if (isLocal && typeof sendPineapplePosition === 'function') {
-    sendPineapplePosition(x, y)
+    sendPineapplePosition(xPercent, yPercent)
   }
 }
 
 function drawPineappleSlices() {
   pineappleSlices.forEach((slice) => {
+    const x = slice.xPercent * canvas.width
+    const y = slice.yPercent * canvas.height
     // Draw pineapple body
     ctx.beginPath()
-    ctx.ellipse(slice.x, slice.y + 10, 15, 20, 0, 0, 2 * Math.PI)
+    ctx.ellipse(x, y + 10, 15, 20, 0, 0, 2 * Math.PI)
     ctx.fillStyle = '#FFF700'
     ctx.fill()
     ctx.strokeStyle = '#DAA520'
@@ -33,7 +37,7 @@ function drawPineappleSlices() {
     for (let i = -2; i <= 2; i++) {
       for (let j = -2; j <= 2; j++) {
         ctx.beginPath()
-        ctx.arc(slice.x + i * 6, slice.y + 10 + j * 8, 2, 0, 2 * Math.PI)
+        ctx.arc(x + i * 6, y + 10 + j * 8, 2, 0, 2 * Math.PI)
         ctx.fillStyle = '#DAA520'
         ctx.fill()
       }
@@ -41,13 +45,13 @@ function drawPineappleSlices() {
 
     // Draw pineapple crown
     ctx.beginPath()
-    ctx.moveTo(slice.x - 15, slice.y)
-    ctx.lineTo(slice.x - 10, slice.y - 15)
-    ctx.lineTo(slice.x - 5, slice.y - 5)
-    ctx.lineTo(slice.x, slice.y - 20)
-    ctx.lineTo(slice.x + 5, slice.y - 5)
-    ctx.lineTo(slice.x + 10, slice.y - 15)
-    ctx.lineTo(slice.x + 15, slice.y)
+    ctx.moveTo(x - 15, y)
+    ctx.lineTo(x - 10, y - 15)
+    ctx.lineTo(x - 5, y - 5)
+    ctx.lineTo(x, y - 20)
+    ctx.lineTo(x + 5, y - 5)
+    ctx.lineTo(x + 10, y - 15)
+    ctx.lineTo(x + 15, y)
     ctx.closePath()
     ctx.fillStyle = '#228B22'
     ctx.fill()
