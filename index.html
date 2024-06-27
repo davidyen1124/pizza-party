@@ -28,15 +28,20 @@
 <body>
     <canvas id="pizzaCanvas"></canvas>
     <div id="controls">
-        <button onclick="createOffer()">Create Offer</button>
+        <h3>How to connect:</h3>
+        <ol>
+            <li>Click "Connect" on both devices</li>
+            <li>On Device A, copy the connection code and send it to Device B</li>
+            <li>On Device B, paste the code and click "Join"</li>
+            <li>You're connected! Click anywhere to drop pineapples</li>
+        </ol>
+        <button id="connectBtn" onclick="connect()">Connect</button>
         <br><br>
-        <textarea id="answerBox" placeholder="Paste answer here"></textarea>
+        <textarea id="connectionBox" placeholder="Paste connection code here"></textarea>
         <br>
-        <button onclick="handleAnswer(document.getElementById('answerBox').value)">Set Answer</button>
+        <button id="joinBtn" onclick="join()" disabled>Join</button>
         <br><br>
-        <textarea id="candidateBox" placeholder="Paste ICE candidate here"></textarea>
-        <br>
-        <button onclick="handleCandidate(document.getElementById('candidateBox').value)">Add ICE Candidate</button>
+        <div id="status"></div>
     </div>
     <script src="webrtc.js"></script>
     <script src="pizza.js"></script>
