@@ -27,9 +27,11 @@ canvas {
   z-index: 10;
   display: flex;
   align-items: center;
+  width: 80%;
+  max-width: 600px;
 }
 #connectionBox {
-  width: 150px;
+  flex-grow: 1;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 20px 0 0 20px;
