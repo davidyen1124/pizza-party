@@ -1,10 +1,33 @@
 const canvas = document.getElementById('pizzaCanvas');
 const ctx = canvas.getContext('2d');
 
+let pineappleSlices = [];
+
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     drawPizza();
+    drawPineappleSlices();
+}
+
+function dropPineapple(x, y) {
+    pineappleSlices.push({ x, y });
+    drawPineappleSlices();
+}
+
+function drawPineappleSlices() {
+    pineappleSlices.forEach(slice => {
+        ctx.beginPath();
+        ctx.moveTo(slice.x, slice.y);
+        ctx.lineTo(slice.x - 10, slice.y + 20);
+        ctx.lineTo(slice.x + 10, slice.y + 20);
+        ctx.closePath();
+        ctx.fillStyle = '#FFD700';
+        ctx.fill();
+        ctx.strokeStyle = '#DAA520';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    });
 }
 
 function drawPizza() {
@@ -46,6 +69,8 @@ function drawPizza() {
         ctx.stroke();
     }
 
+    // Draw pineapple slices
+    drawPineappleSlices();
 }
 
 window.addEventListener('resize', resizeCanvas);
