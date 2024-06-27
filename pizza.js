@@ -17,15 +17,39 @@ function dropPineapple(x, y) {
 
 function drawPineappleSlices() {
     pineappleSlices.forEach(slice => {
+        // Draw pineapple body
         ctx.beginPath();
-        ctx.moveTo(slice.x, slice.y);
-        ctx.lineTo(slice.x - 10, slice.y + 20);
-        ctx.lineTo(slice.x + 10, slice.y + 20);
-        ctx.closePath();
-        ctx.fillStyle = '#FFD700';
+        ctx.ellipse(slice.x, slice.y + 10, 15, 20, 0, 0, 2 * Math.PI);
+        ctx.fillStyle = '#FFF700';
         ctx.fill();
         ctx.strokeStyle = '#DAA520';
         ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Draw pineapple pattern
+        for (let i = -2; i <= 2; i++) {
+            for (let j = -2; j <= 2; j++) {
+                ctx.beginPath();
+                ctx.arc(slice.x + i * 6, slice.y + 10 + j * 8, 2, 0, 2 * Math.PI);
+                ctx.fillStyle = '#DAA520';
+                ctx.fill();
+            }
+        }
+
+        // Draw pineapple crown
+        ctx.beginPath();
+        ctx.moveTo(slice.x - 15, slice.y);
+        ctx.lineTo(slice.x - 10, slice.y - 15);
+        ctx.lineTo(slice.x - 5, slice.y - 5);
+        ctx.lineTo(slice.x, slice.y - 20);
+        ctx.lineTo(slice.x + 5, slice.y - 5);
+        ctx.lineTo(slice.x + 10, slice.y - 15);
+        ctx.lineTo(slice.x + 15, slice.y);
+        ctx.closePath();
+        ctx.fillStyle = '#228B22';
+        ctx.fill();
+        ctx.strokeStyle = '#006400';
+        ctx.lineWidth = 1;
         ctx.stroke();
     });
 }
