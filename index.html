@@ -1,97 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Full Screen Pizza with WebRTC - A fun, interactive pizza experience">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Full Screen Pizza with WebRTC - A fun, interactive pizza experience"
+    />
     <title>Pizza Party - WebRTC Fun</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-        }
-        canvas {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 10px;
-            text-align: center;
-            z-index: 10;
-        }
-        h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #e74c3c;
-        }
-        #controls {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.8);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #connectionBox {
-            width: 200px;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        #connectBtn {
-            padding: 8px 15px;
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #connectBtn:disabled {
-            background-color: #95a5a6;
-            cursor: not-allowed;
-        }
-        #connectBtn:hover:not(:disabled) {
-            background-color: #27ae60;
-        }
-        #status {
-            margin-top: 10px;
-            font-weight: bold;
-        }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+      }
+      canvas {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      #controls {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.8);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #connectionBox {
+        width: 200px;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      #connectBtn {
+        padding: 8px 15px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      #connectBtn:disabled {
+        background-color: #95a5a6;
+        cursor: not-allowed;
+      }
+      #connectBtn:hover:not(:disabled) {
+        background-color: #27ae60;
+      }
+      #status {
+        margin-top: 10px;
+        font-weight: bold;
+      }
     </style>
-</head>
-<body>
-    <header>
-        <h1>Pizza Party</h1>
-    </header>
+  </head>
+  <body>
     <canvas id="pizzaCanvas"></canvas>
     <div id="controls">
-        <input type="text" id="connectionBox" placeholder="Enter peer ID">
-        <button id="connectBtn" disabled>Connect</button>
-        <div id="status"></div>
+      <input type="text" id="connectionBox" placeholder="Enter peer ID" />
+      <button id="connectBtn" disabled>Connect</button>
+      <div id="status"></div>
     </div>
     <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
     <script src="pizza.js"></script>
     <script src="peerjs-connection.js"></script>
-</body>
+  </body>
 </html>
