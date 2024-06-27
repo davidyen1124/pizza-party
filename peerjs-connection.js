@@ -43,7 +43,7 @@ function setupConnection() {
   })
 
   conn.on('data', (data) => {
-    dropPineapple(data.x, data.y, false)
+    receivePineapple(data.xPercent, data.yPercent)
   })
 
   conn.on('close', () => {
@@ -65,9 +65,9 @@ function updateConnectionStatus(status) {
   }
 }
 
-function sendPineapplePosition(x, y) {
+function sendPineapplePosition(xPercent, yPercent) {
   if (conn && conn.open) {
-    conn.send({ x, y })
+    conn.send({ xPercent, yPercent })
   }
 }
 

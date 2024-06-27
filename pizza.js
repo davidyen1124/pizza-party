@@ -20,6 +20,11 @@ function dropPineapple(x, y, isLocal = true) {
   }
 }
 
+function receivePineapple(xPercent, yPercent) {
+  pineappleSlices.push({ xPercent, yPercent })
+  drawPineappleSlices()
+}
+
 function drawPineappleSlices() {
   pineappleSlices.forEach((slice) => {
     const x = slice.xPercent * canvas.width
