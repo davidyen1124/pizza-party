@@ -103,12 +103,22 @@ function drawPizza() {
 window.addEventListener('resize', resizeCanvas)
 resizeCanvas()
 
+// Function to check if connection is open
+function isConnected() {
+  return conn && conn.open;
+}
+
 // Add click event listener to canvas
 document
   .getElementById('pizzaCanvas')
   .addEventListener('click', function (event) {
-    const rect = canvas.getBoundingClientRect()
-    const x = event.clientX - rect.left
-    const y = event.clientY - rect.top
-    dropPineapple(x, y, true)
+    if (isConnected()) {
+      const rect = canvas.getBoundingClientRect()
+      const x = event.clientX - rect.left
+      const y = event.clientY - rect.top
+      dropPineapple(x, y, true)
+    } else {
+      console.log('Not connected. Cannot drop pineapple.')
+      // Optionally, you can display a message to the user here
+    }
   })
