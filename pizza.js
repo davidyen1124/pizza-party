@@ -36,6 +36,21 @@ function drawPizza() {
     ctx.lineWidth = radius * 0.1;
     ctx.strokeStyle = '#8B4513';
     ctx.stroke();
+
+    // Draw pizza slices
+    const slices = 8;
+    ctx.beginPath();
+    for (let i = 0; i < slices; i++) {
+        const angle = (i / slices) * 2 * Math.PI;
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(
+            centerX + Math.cos(angle) * radius,
+            centerY + Math.sin(angle) * radius
+        );
+    }
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#8B4513';
+    ctx.stroke();
 }
 
 window.addEventListener('resize', resizeCanvas);
