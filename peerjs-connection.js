@@ -23,7 +23,7 @@ function connect() {
 
 function setupConnection() {
     conn.on('open', () => {
-        document.getElementById('status').textContent = 'Connected!';
+        updateConnectionStatus('Connected!');
         document.getElementById('connectBtn').disabled = true;
         document.getElementById('connectionBox').value = '';
     });
@@ -31,6 +31,20 @@ function setupConnection() {
     conn.on('data', (data) => {
         dropPineapple(data.x, data.y, false);
     });
+
+    conn.on('close', () => {
+        updateConnectionStatus('Disconnected');
+        document.getElementById('connectBtn').disabled = false;
+    });
+}
+
+function updateConnectionStatus(status) {
+    document.getElementById('status').textContent = status;
+    if (status === 'Connected!') {
+        document.getElementById('status').style.color = 'green';
+    } else {
+        document.getElementById('status').style.color = 'red';
+    }
 }
 
 function sendPineapplePosition(x, y) {
