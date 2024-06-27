@@ -44,15 +44,5 @@
     <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
     <script src="pizza.js"></script>
     <script src="peerjs-connection.js"></script>
-    <script>
-      document
-        .getElementById('pizzaCanvas')
-        .addEventListener('click', function (event) {
-          const rect = canvas.getBoundingClientRect()
-          const x = event.clientX - rect.left
-          const y = event.clientY - rect.top
-          dropPineapple(x, y, true)
-        })
-    </script>
   </body>
 </html>
