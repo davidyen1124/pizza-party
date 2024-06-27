@@ -105,7 +105,7 @@ resizeCanvas()
 
 // Function to check if connection is open
 function isConnected() {
-  return conn && conn.open;
+  return conn && conn.open
 }
 
 // Add click event listener to canvas
@@ -119,25 +119,5 @@ document
       dropPineapple(x, y, true)
     } else {
       console.log('Not connected. Cannot drop pineapple.')
-      showNotification('Not connected. Cannot drop pineapple.')
     }
   })
-
-function showNotification(message) {
-  const notification = document.createElement('div')
-  notification.textContent = message
-  notification.style.position = 'fixed'
-  notification.style.top = '20px'
-  notification.style.left = '50%'
-  notification.style.transform = 'translateX(-50%)'
-  notification.style.backgroundColor = 'rgba(255, 0, 0, 0.8)'
-  notification.style.color = 'white'
-  notification.style.padding = '10px'
-  notification.style.borderRadius = '5px'
-  notification.style.zIndex = '1000'
-  document.body.appendChild(notification)
-  
-  setTimeout(() => {
-    document.body.removeChild(notification)
-  }, 3000)
-}
