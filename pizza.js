@@ -104,9 +104,11 @@ window.addEventListener('resize', resizeCanvas)
 resizeCanvas()
 
 // Add click event listener to canvas
-document.getElementById('pizzaCanvas').addEventListener('click', function (event) {
-  const rect = canvas.getBoundingClientRect()
-  const x = event.clientX - rect.left
-  const y = event.clientY - rect.top
-  dropPineapple(x, y, true)
-})
+document
+  .getElementById('pizzaCanvas')
+  .addEventListener('click', function (event) {
+    const rect = canvas.getBoundingClientRect()
+    const x = event.clientX - rect.left
+    const y = event.clientY - rect.top
+    dropPineapple(x, y, true)
+  })
