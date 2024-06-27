@@ -10,9 +10,12 @@ function resizeCanvas() {
     drawPineappleSlices();
 }
 
-function dropPineapple(x, y) {
+function dropPineapple(x, y, isLocal = true) {
     pineappleSlices.push({ x, y });
     drawPineappleSlices();
+    if (isLocal) {
+        sendPineapplePosition(x, y);
+    }
 }
 
 function drawPineappleSlices() {

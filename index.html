@@ -19,14 +19,17 @@
 </head>
 <body>
     <canvas id="pizzaCanvas"></canvas>
+    <script src="webrtc.js"></script>
     <script src="pizza.js"></script>
     <script>
         document.getElementById('pizzaCanvas').addEventListener('click', function(event) {
             const rect = canvas.getBoundingClientRect();
             const x = event.clientX - rect.left;
             const y = event.clientY - rect.top;
-            dropPineapple(x, y);
+            dropPineapple(x, y, true);
         });
+
+        setupWebRTC();
     </script>
 </body>
 </html>
