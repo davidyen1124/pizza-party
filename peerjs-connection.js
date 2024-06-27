@@ -5,14 +5,28 @@ function setupPeerJS() {
   peer = new Peer()
 
   peer.on('open', (id) => {
-    document.getElementById('status').textContent = id
+    const statusElement = document.getElementById('status');
+    statusElement.textContent = id
     document.getElementById('connectBtn').disabled = false
+    
+    statusElement.style.cursor = 'pointer';
+    statusElement.title = 'Click to copy ID';
+    statusElement.addEventListener('click', copyPeerIdToClipboard);
   })
 
   peer.on('connection', (connection) => {
     conn = connection
     setupConnection()
   })
+}
+
+function copyPeerIdToClipboard() {
+  const peerId = document.getElementById('status').textContent;
+  navigator.clipboard.writeText(peerId).then(() => {
+    alert('Peer ID copied to clipboard!');
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
+  });
 }
 
 function connect() {
@@ -39,11 +53,15 @@ function setupConnection() {
 }
 
 function updateConnectionStatus(status) {
-  document.getElementById('status').textContent = status
+  const statusElement = document.getElementById('status');
+  statusElement.textContent = status
   if (status === 'Connected!') {
-    document.getElementById('status').style.color = 'green'
+    statusElement.style.color = 'green'
+    statusElement.style.cursor = 'default';
+    statusElement.title = '';
+    statusElement.removeEventListener('click', copyPeerIdToClipboard);
   } else {
-    document.getElementById('status').style.color = 'red'
+    statusElement.style.color = 'red'
   }
 }
 
